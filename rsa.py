@@ -55,3 +55,37 @@ def decode(m, d, n):
         d = d >> 1
         m = (m * m)% n
     return result
+
+while True:
+    prime1 = prime_generator()
+    prime2 = prime_genrator2()
+    n = prime1 * prime2
+    n2 = (prime1 - 1) * (prime2 - 1)
+
+    e = e_generating(n2)
+
+    gcd, x, y = egcd(e, n2)
+    if x < 0:
+        while (x <= 0):
+            x = (n2 + x) % n2
+    public_key = (e, n)
+    private_key = (x, n)
+    value = input("input a string:")
+    encoded_list=[]
+    decoded_str=[]
+    string=""
+    for letter in value:
+        encoded = encoding(letter, e, n)
+        encoded_list.append(encoded)
+    encoded_string=""
+    for encode in encoded_list:
+        encoded_string += str(encode)
+    print(int(encoded_string))
+    for i in encoded_list:
+        decoded_str.append(decode(i,x,n))
+    for l in decoded_str:
+        string += chr(l)
+    print(string)
+    x=input("press x to exit or just enter to continue")
+    if x=="x":
+        break
