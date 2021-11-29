@@ -15,3 +15,9 @@ def prime_genrator2():
     x = randint(0, 27)
     y = 224584605939537911 + 18135696597948930 * x
     return y
+def egcd(a, b):
+    if a == 0:
+        return b, 0, 1
+    else:
+        gcd, x, y = egcd(b % a, a)
+        return gcd, y - (b // a) * x, x
